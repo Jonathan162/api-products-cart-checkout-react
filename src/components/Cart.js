@@ -40,42 +40,45 @@ const Cart = ({ onRemove, onAdd, cartItems, clearCart, removeProducts }) => {
         <CartPopUp
           content={
             <CartLayout>
-              <h2>Cart Items</h2>
+              <h2>Varukorg ({cartItems.length})</h2>
               <div>
-                {cartItems.length === 0 && <div>Cart is empty</div>}
+                {cartItems.length === 0 && <div>Varukorgen är tom...</div>}
                 {cartItems.map((item) => (
-                  <div key={item.id}>
-                    <img src={item.url} width="60px" />
+                  <Table key={item.id}>
+                    <div>
+                      <img src={item.url} width="60px" alt={item.title} />{" "}
+                    </div>
                     <div>{item.title}</div>
                     <div>
                       <button onClick={() => onAdd(item)}>+</button>{" "}
                       <button onClick={() => onRemove(item)}>-</button>
                     </div>
-                    {<button onClick={() => removeProducts(item)}>X</button>}
+                    {<button onClick={() => removeProducts(item)}>x</button>}
                     <div>
-                      {item.qty} x €{item.price.toFixed(2)}
+                      {item.qty} x {item.price}:-
                     </div>
-                  </div>
+                  </Table>
                 ))}
               </div>
               {cartItems.length !== 0 && (
                 <>
                   <hr />
                   <div>
-                    <div>
-                      <strong>Total Price</strong>
-                    </div>
-                    <div>
-                      <strong>€{totalPrice.toFixed(2)} </strong>
-                    </div>
+                    <span>
+                      <p>
+                        Totalt pris: <strong>{totalPrice}:-</strong>
+                      </p>
+                    </span>
                   </div>
                   <hr />
                   <div>
                     <button onClick={() => newTest()}>
                       {" "}
-                      <Link to="/checkout">Proceed to Checkout</Link>
+                      <Link to="/checkout">Gå till checkout</Link>
                     </button>
-                    <button onClick={() => doubleFunction()}>Empty Cart</button>
+                    <button onClick={() => doubleFunction()}>
+                      Töm varukorg
+                    </button>
                   </div>
                 </>
               )}
@@ -87,6 +90,20 @@ const Cart = ({ onRemove, onAdd, cartItems, clearCart, removeProducts }) => {
     </div>
   );
 };
+
+const Table = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 460px;
+  border-bottom: 1px solid #222;
+  margin: 15px 0;
+  padding-bottom: 5px;
+
+  button {
+    padding: 5px;
+  }
+`;
 
 const CartNotification = styled.div`
   display: flex;
@@ -104,15 +121,27 @@ const CartNotification = styled.div`
 `;
 
 const CartLayout = styled.div`
-  border: 1px solid #222;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 
+  h2 {
+    margin: 20px 0;
+  }
+
   a {
     color: #222;
     text-decoration: none;
+  }
+
+  button {
+    padding: 5px;
+    margin: 20px 0 10px 10px;
+  }
+
+  p {
+    margin-top: 25px;
   }
 `;
 

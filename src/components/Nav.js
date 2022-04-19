@@ -4,13 +4,22 @@ import styled from "styled-components";
 
 const Nav = () => {
   return (
-    <nav>
+    <NavContainer>
       <h3 id="logo">
-        <NavLink to="/">The Electronic Store</NavLink>
+        <NavLink to="/">Elektronikbutiken</NavLink>
       </h3>
-    </nav>
+      <p>Elektronik på nätet sedan 2008</p>
+    </NavContainer>
   );
 };
+
+const NavContainer = styled.nav`
+  p {
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 2px;
+  }
+`;
 
 const NavLink = styled(Link)`
   color: white;

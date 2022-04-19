@@ -11,10 +11,8 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   //function for deleting product object
-  const removeProducts = (index) => {
-    const allProducts = [...cartItems];
-    allProducts.splice(index, 1);
-    setCartItems(allProducts);
+  const removeProducts = (item) => {
+    setCartItems(cartItems.filter((x) => x.id !== item.id));
   };
 
   //function for adding a product
