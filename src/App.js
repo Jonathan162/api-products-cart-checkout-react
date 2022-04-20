@@ -4,18 +4,14 @@ import Footer from "./components/Footer";
 import Product from "./pages/Product";
 import CheckOutPage from "./pages/CheckOutPage";
 import Header from "./components/Header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./app.css";
+import { Routes, Route } from "react-router-dom";
+import GlobalStyle from "./components/GlobalStyle";
 
 function App() {
+  //state for managing cart and checkout page
   const [cartItems, setCartItems] = useState([]);
 
-  //function for deleting product object
-  const removeProducts = (item) => {
-    setCartItems(cartItems.filter((x) => x.id !== item.id));
-  };
-
-  //function for adding a product
+  //fn for adding to cart
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
@@ -28,7 +24,8 @@ function App() {
       setCartItems([...cartItems, { ...product, qty: 1 }]);
     }
   };
-  //function for adding a product
+
+  //fn for removing a product
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist.qty === 1) {
@@ -41,61 +38,48 @@ function App() {
       );
     }
   };
-  //function for clearing cart
+
+  //fn for deleting object of product
+  const removeProducts = (item) => {
+    setCartItems(cartItems.filter((x) => x.id !== item.id));
+  };
+
+  //fn for clearing cart
   const clearCart = () => {
     setCartItems([]);
   };
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header
-          cartItems={cartItems}
-          setCartItems={setCartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-          countCartItems={cartItems.length}
-          clearCart={clearCart}
-          removeProducts={removeProducts}
+      <GlobalStyle />
+      <Header
+        cartItems={cartItems}
+        onAdd={onAdd}
+        onRemove={onRemove}
+        clearCart={clearCart}
+        removeProducts={removeProducts}
+      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Products cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} />
+          }
         />
-
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Products
-                cartItems={cartItems}
-                setCartItems={setCartItems}
-                onAdd={onAdd}
-                onRemove={onRemove}
-              />
-            }
-          />
-          <Route
-            path="/:id"
-            element={
-              <Product
-                cartItems={cartItems}
-                setCartItems={setCartItems}
-                onAdd={onAdd}
-                onRemove={onRemove}
-              />
-            }
-          />
-          <Route
-            path="/checkout"
-            element={
-              <CheckOutPage
-                onAdd={onAdd}
-                onRemove={onRemove}
-                removeProducts={removeProducts}
-                cartItems={cartItems}
-              />
-            }
-          />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+        <Route path="/:id" element={<Product onAdd={onAdd} />} />
+        <Route
+          path="/checkout"
+          element={
+            <CheckOutPage
+              onAdd={onAdd}
+              onRemove={onRemove}
+              removeProducts={removeProducts}
+              cartItems={cartItems}
+            />
+          }
+        />
+      </Routes>
+      <Footer />
     </div>
   );
 }

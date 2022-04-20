@@ -7,15 +7,18 @@ const CheckOutPage = ({ cartItems, onAdd, onRemove, removeProducts }) => {
 
   return (
     <Wrapper>
-      <h1>You have {cartItems.length} products</h1>
+      {cartItems.length === 1 ? (
+        <h1>Du har valt {cartItems.length} produkt </h1>
+      ) : (
+        <h1>Du har valt {cartItems.length} produkter </h1>
+      )}
       <div>
         {cartItems.length === 0 && (
           <div>
-            Cart is empty
-            <br />
-            <button>
-              <BtnLink to="/">Back to home</BtnLink>
-            </button>
+            <p>Här var det tomt!</p>
+            <Link to="/">
+              <button>Till startsidan</button>
+            </Link>
           </div>
         )}
         <table>
@@ -27,17 +30,30 @@ const CheckOutPage = ({ cartItems, onAdd, onRemove, removeProducts }) => {
                   <img src={item.url} width="200px" alt={item.title} />{" "}
                 </td>
                 <td>
-                  <h2>{item.title}</h2>
+                  <h3>{item.title}</h3>
                 </td>
                 <td>
-                  <button onClick={() => onAdd(item)}>+</button>{" "}
-                  <button onClick={() => onRemove(item)}>-</button>
+                  <button className="action-btn" onClick={() => onAdd(item)}>
+                    +
+                  </button>{" "}
+                  <button className="action-btn" onClick={() => onRemove(item)}>
+                    -
+                  </button>
                 </td>
                 <td>
-                  {item.qty} x {item.price}:-
+                  <p>
+                    {item.qty} x {item.price}:-{" "}
+                  </p>
                 </td>
                 <td>
-                  {<button onClick={() => removeProducts(item)}>x</button>}
+                  {
+                    <button
+                      className="remove-item-btn"
+                      onClick={() => removeProducts(item)}
+                    >
+                      Ta bort
+                    </button>
+                  }
                 </td>
               </tr>
             ))}
@@ -46,10 +62,10 @@ const CheckOutPage = ({ cartItems, onAdd, onRemove, removeProducts }) => {
       </div>
       {cartItems.length !== 0 && (
         <PriceContainer>
-          <br />
-          <br />
           <div>
-            Totalt pris: <strong>{totalPrice}:-</strong>
+            <p>
+              Totalt pris: <strong>{totalPrice}:-</strong>
+            </p>
           </div>
           <div>
             <button onClick={() => alert("Skickar vidare till betalning")}>
@@ -65,14 +81,15 @@ const CheckOutPage = ({ cartItems, onAdd, onRemove, removeProducts }) => {
 
 const Wrapper = styled.div`
   min-height: 100vh;
-  max-width: 960px;
-  margin: auto;
+  max-width: 60rem;
+  margin: 0 auto;
+  margin-top: 10rem;
 
   table {
     border-collapse: collapse;
     margin: 5px 0;
     font-size: 0.9em;
-    width: 960px;
+    width: 60rem;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   }
 
@@ -84,27 +101,64 @@ const Wrapper = styled.div`
     background-color: #f3f3f3;
   }
 
+  tr > *:not(:first-child) {
+    text-align: center;
+  }
+
   h1 {
     text-align: center;
-    margin: 40px 0;
+    font-weight: lighter;
+    margin: 60px 0;
   }
 
-  button {
-    padding: 5px;
+  h3 {
+    font-weight: lighter;
   }
 
-  .product-foto {
-    display: flex;
+  .action-btn {
+    max-width: 2rem;
+    padding: 0.3rem;
   }
-`;
 
-const BtnLink = styled(Link)`
-  text-decoration: none;
-  color: #222;
+  .remove-item-btn {
+    padding: 0.6rem;
+  }
+
+  /*  Media queries */
+  /* @media only screen and (max-width: 950px) {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    tr {
+      border: 1px solid #ccc;
+    }
+
+    td {
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+
+    }
+
+    td:before {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+  } */
 `;
 
 const PriceContainer = styled.div`
-  margin: 40px 0;
+  margin: 60px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;

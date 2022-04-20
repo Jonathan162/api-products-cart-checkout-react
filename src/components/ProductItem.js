@@ -36,23 +36,6 @@ const ListItem = styled.li`
     font-size: 19px;
     font-weight: 300;
   }
-
-  a,
-  a:visited {
-    text-decoration: none;
-    color: #222;
-  }
-
-  button {
-    margin-top: 20px;
-    background-color: #0276ff;
-    border-radius: 3px;
-    border-style: none;
-    box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
-    padding: 10px 21px;
-    color: #fff;
-    cursor: pointer;
-  }
 `;
 
 export default ProductItem;

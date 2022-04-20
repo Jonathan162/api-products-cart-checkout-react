@@ -26,7 +26,7 @@ const Footer = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: #222;
+  background-color: #333;
 `;
 
 const FooterLayout = styled.footer`

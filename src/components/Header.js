@@ -8,12 +8,11 @@ const Header = ({
   setCartItems,
   onAdd,
   onRemove,
-  countCartItem,
   clearCart,
   removeProducts,
 }) => {
   return (
-    <Wrapper>
+    <Wrapper className="hej">
       <HeaderLayout>
         <Nav />
         <div>
@@ -22,7 +21,6 @@ const Header = ({
             setCartItems={setCartItems}
             onAdd={onAdd}
             onRemove={onRemove}
-            countCartItem={countCartItem}
             clearCart={clearCart}
             removeProducts={removeProducts}
           />
@@ -33,7 +31,10 @@ const Header = ({
 };
 
 const Wrapper = styled.div`
-  background-color: #222;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
 `;
 
 const HeaderLayout = styled.header`
@@ -44,16 +45,6 @@ const HeaderLayout = styled.header`
   align-items: center;
   width: 80%;
   margin: 0 auto;
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-
-  ul {
-    display: flex;
-  }
-
-  li {
-    list-style: none;
-    padding: 0 20px;
-  }
 `;
 
 export default Header;

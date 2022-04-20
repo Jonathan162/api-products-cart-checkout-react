@@ -32,7 +32,7 @@ const Products = ({ onAdd }) => {
 
 const Wrapper = styled.ul`
   width: 80%;
-  margin: 80px auto;
+  margin: 10rem auto;
   display: grid;
   place-items: center;
   grid-template-columns: repeat(3, 1fr);
