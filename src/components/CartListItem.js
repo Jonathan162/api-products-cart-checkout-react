@@ -4,11 +4,13 @@ import styled from "styled-components";
 const CartListItem = ({ item, onRemove, onAdd, removeProducts }) => {
   return (
     <ListItem key={item.id}>
-      <div>
+      <div className="cart-item">
         <img src={item.url} width="60px" alt={item.title} />{" "}
       </div>
-      <div>{item.title}</div>
       <div>
+        <b>{item.title}</b>
+      </div>
+      <div className="cart-item">
         <button className="action-btn" onClick={() => onAdd(item)}>
           +
         </button>{" "}
@@ -16,7 +18,7 @@ const CartListItem = ({ item, onRemove, onAdd, removeProducts }) => {
           -
         </button>
       </div>
-      <div>
+      <div className="cart-item">
         {item.qty} x {item.price}:-
       </div>
       {
@@ -43,6 +45,15 @@ const ListItem = styled.div`
   .action-btn {
     max-width: 2rem;
     padding: 0.3rem;
+  }
+
+  /*  Media queries */
+  @media only screen and (max-width: 845px) {
+    display: block;
+
+    .cart-item {
+      margin: 1rem 0;
+    }
   }
 `;
 

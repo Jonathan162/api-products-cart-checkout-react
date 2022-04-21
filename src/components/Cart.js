@@ -61,7 +61,7 @@ const Cart = ({ onRemove, onAdd, cartItems, clearCart, removeProducts }) => {
                   <div>
                     <span>
                       <p>
-                        Att betala: <strong>{totalPrice}:-</strong>
+                        Att betala: <b>{totalPrice}:-</b>
                       </p>
                     </span>
                   </div>
@@ -116,6 +116,17 @@ const CartLayout = styled.div`
     margin-top: 1rem;
     display: flex;
     justify-content: space-between;
+  }
+
+  /*  Media queries */
+  @media only screen and (max-width: 680px) {
+    .cart-btns {
+      display: block;
+    }
+
+    .cart-btns button {
+      margin-top: 1rem;
+    }
   }
 `;
 

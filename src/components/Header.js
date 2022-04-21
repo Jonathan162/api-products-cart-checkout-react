@@ -33,6 +33,7 @@ const Header = ({
 const Wrapper = styled.div`
   background-color: #333;
   position: fixed;
+  z-index: 100;
   top: 0;
   width: 100%;
 `;

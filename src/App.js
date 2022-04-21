@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import Products from "./pages/Products";
 import Footer from "./components/Footer";
 import Product from "./pages/Product";
-import CheckOutPage from "./pages/CheckOutPage";
+import Checkout from "./pages/Checkout";
 import Header from "./components/Header";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import GlobalStyle from "./components/GlobalStyle";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
+  //getting location for page transition exit on componentDidUnMount
+  const location = useLocation();
+
   //state for managing cart and checkout page
   const [cartItems, setCartItems] = useState([]);
 
@@ -59,26 +63,32 @@ function App() {
         clearCart={clearCart}
         removeProducts={removeProducts}
       />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Products cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} />
-          }
-        />
-        <Route path="/:id" element={<Product onAdd={onAdd} />} />
-        <Route
-          path="/checkout"
-          element={
-            <CheckOutPage
-              onAdd={onAdd}
-              onRemove={onRemove}
-              removeProducts={removeProducts}
-              cartItems={cartItems}
-            />
-          }
-        />
-      </Routes>
+      <AnimatePresence exitBeforeEnter>
+        <Routes location={location} key={location.pathname}>
+          <Route
+            path="/"
+            element={
+              <Products
+                cartItems={cartItems}
+                onAdd={onAdd}
+                onRemove={onRemove}
+              />
+            }
+          />
+          <Route path="/:id" element={<Product onAdd={onAdd} />} />
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+                onAdd={onAdd}
+                onRemove={onRemove}
+                removeProducts={removeProducts}
+                cartItems={cartItems}
+              />
+            }
+          />
+        </Routes>
+      </AnimatePresence>
       <Footer />
     </div>
   );

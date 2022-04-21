@@ -8,10 +8,9 @@ const ProductItem = ({ product, onAdd }) => {
       <Link to={`/${product.id}`}>
         <img src={product.url} alt={product.title} width="250px" />
       </Link>
-      <h3>
-        {" "}
-        <Link to={`/${product.id}`}>{product.title}</Link>
-      </h3>
+      <Link to={`/${product.id}`}>
+        <h3> {product.title} </h3>
+      </Link>
       <span>
         <p>{product.price}:-</p>
       </span>
@@ -24,17 +23,24 @@ const ProductItem = ({ product, onAdd }) => {
 
 const ListItem = styled.li`
   list-style: none;
-  padding: 60px;
+  background-color: #333;
+  padding: 4.2rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 3px;
 
   h3 {
-    margin: 10px 0;
+    padding-top: 3rem;
+    color: white;
   }
 
   p {
     font-size: 19px;
     font-weight: 300;
+    color: white;
+  }
+
+  button {
+    color: white;
   }
 `;
 

@@ -1,12 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import { PageAnimation } from "./Animation";
 
-const CheckOutPage = ({ cartItems, onAdd, onRemove, removeProducts }) => {
+const Checkout = ({ cartItems, onAdd, onRemove, removeProducts }) => {
   const totalPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
 
   return (
-    <Wrapper>
+    <Wrapper
+      exit="exit"
+      variants={PageAnimation}
+      initial="hidden"
+      animate="show"
+    >
       {cartItems.length === 1 ? (
         <h1>Du har valt {cartItems.length} produkt </h1>
       ) : (
@@ -22,12 +29,11 @@ const CheckOutPage = ({ cartItems, onAdd, onRemove, removeProducts }) => {
           </div>
         )}
         <table>
-          <thead></thead>
           <tbody>
             {cartItems.map((item) => (
               <tr key={item.id}>
                 <td className="product-foto">
-                  <img src={item.url} width="200px" alt={item.title} />{" "}
+                  <img src={item.url} width="200px" alt={item.title} />
                 </td>
                 <td>
                   <h3>{item.title}</h3>
@@ -35,14 +41,14 @@ const CheckOutPage = ({ cartItems, onAdd, onRemove, removeProducts }) => {
                 <td>
                   <button className="action-btn" onClick={() => onAdd(item)}>
                     +
-                  </button>{" "}
+                  </button>
                   <button className="action-btn" onClick={() => onRemove(item)}>
                     -
                   </button>
                 </td>
                 <td>
                   <p>
-                    {item.qty} x {item.price}:-{" "}
+                    {item.qty} x {item.price}:-
                   </p>
                 </td>
                 <td>
@@ -67,11 +73,11 @@ const CheckOutPage = ({ cartItems, onAdd, onRemove, removeProducts }) => {
               Totalt pris: <strong>{totalPrice}:-</strong>
             </p>
           </div>
-          <div>
-            <button onClick={() => alert("Skickar vidare till betalning")}>
-              Till betalningen
-            </button>
-          </div>
+
+          <button onClick={() => alert("Skickar vidare till betalning")}>
+            Till betalning
+          </button>
+
           <hr />
         </PriceContainer>
       )}
@@ -79,7 +85,7 @@ const CheckOutPage = ({ cartItems, onAdd, onRemove, removeProducts }) => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   min-height: 100vh;
   max-width: 60rem;
   margin: 0 auto;
@@ -89,7 +95,7 @@ const Wrapper = styled.div`
     border-collapse: collapse;
     margin: 5px 0;
     font-size: 0.9em;
-    width: 60rem;
+    width: 100%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   }
 
@@ -124,8 +130,12 @@ const Wrapper = styled.div`
     padding: 0.6rem;
   }
 
+  .product-foto img {
+    margin-bottom: -3.55px;
+  }
+
   /*  Media queries */
-  /* @media only screen and (max-width: 950px) {
+  @media only screen and (max-width: 950px) {
     table,
     thead,
     tbody,
@@ -143,7 +153,6 @@ const Wrapper = styled.div`
       border: none;
       border-bottom: 1px solid #eee;
       position: relative;
-
     }
 
     td:before {
@@ -154,7 +163,11 @@ const Wrapper = styled.div`
       padding-right: 10px;
       white-space: nowrap;
     }
-  } */
+
+    .product-foto {
+      text-align: center;
+    }
+  }
 `;
 
 const PriceContainer = styled.div`
@@ -164,4 +177,4 @@ const PriceContainer = styled.div`
   justify-content: space-between;
 `;
 
-export default CheckOutPage;
+export default Checkout;

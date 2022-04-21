@@ -25,10 +25,10 @@ const PopUpBox = styled.div`
 
   .box {
     position: relative;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     height: auto;
-    max-height: 70vh;
+    max-height: 80vh;
     margin-top: calc(100vh - 85vh - 20px);
     background: #fff;
     border-radius: 4px;
@@ -41,7 +41,7 @@ const PopUpBox = styled.div`
     content: "x";
     cursor: pointer;
     position: fixed;
-    right: calc(26% - 30px);
+    right: calc(21% - 28px);
     top: calc(100vh - 85vh - 33px);
     background: #ededed;
     width: 1.8rem;

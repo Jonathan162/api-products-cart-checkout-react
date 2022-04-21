@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { PageAnimation } from "./Animation";
 
 function Product({ onAdd }) {
   const [productItemData, setProductItemData] = useState([]);
@@ -26,7 +28,12 @@ function Product({ onAdd }) {
   }, []);
 
   return (
-    <Wrapper>
+    <Wrapper
+      variants={PageAnimation}
+      exit="exit"
+      initial="hidden"
+      animate="show"
+    >
       <img width="600px" src={productItemData.url} />
       <h1>{productItemData.title}</h1>
       <h3>{productItemData.price}:-</h3>
@@ -36,21 +43,17 @@ function Product({ onAdd }) {
       </p>
       <div className="action-btn">
         <button onClick={() => onAdd(productItemData)}>
-          Lägg till i varukorgen
+          Lägg i varukorgen
         </button>
         <Link to="/">
           <button>Tillbaka</button>
         </Link>
       </div>
-      {/* { ...productItemData,
-      storage: productItemData.storage - 1,
-    }
- */}
     </Wrapper>
   );
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
   min-height: 80vh;
   display: flex;
   flex-direction: column;
@@ -86,8 +89,13 @@ const Wrapper = styled.section`
   }
 
   .action-btn button {
-    margin: 0 1rem;
+    margin: 2rem;
   }
+
+  /*  Media queries */
+  /* @media only screen and (max-width: 680px) {
+   
+  } */
 `;
 
 export default Product;
