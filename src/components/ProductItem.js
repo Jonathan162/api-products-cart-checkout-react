@@ -9,7 +9,7 @@ const ProductItem = ({ product, onAdd }) => {
         <img src={product.url} alt={product.title} width="250px" />
       </Link>
       <Link to={`/${product.id}`}>
-        <h3> {product.title} </h3>
+        <h3>{product.title}</h3>
       </Link>
       <span>
         <p>{product.price}:-</p>
@@ -22,7 +22,6 @@ const ProductItem = ({ product, onAdd }) => {
 };
 
 const ListItem = styled.li`
-  list-style: none;
   background-color: #333;
   padding: 4.2rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

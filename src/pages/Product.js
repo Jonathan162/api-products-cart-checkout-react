@@ -28,13 +28,13 @@ function Product({ onAdd }) {
   }, []);
 
   return (
-    <Wrapper
+    <MainWrapper
       variants={PageAnimation}
       exit="exit"
       initial="hidden"
       animate="show"
     >
-      <img width="600px" src={productItemData.url} />
+      <img src={productItemData.url} alt={productItemData.title} />
       <h1>{productItemData.title}</h1>
       <h3>{productItemData.price}:-</h3>
       <p className="description">{productItemData.description}</p>
@@ -49,21 +49,22 @@ function Product({ onAdd }) {
           <button>Tillbaka</button>
         </Link>
       </div>
-    </Wrapper>
+    </MainWrapper>
   );
 }
 
-const Wrapper = styled(motion.section)`
+const MainWrapper = styled(motion.main)`
   min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 8rem;
 
   img {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin-top: 4rem;
+    width: 30rem;
   }
 
   h1 {
@@ -75,7 +76,7 @@ const Wrapper = styled(motion.section)`
   }
 
   .description {
-    max-width: 30%;
+    width: 40%;
     margin-top: 0.5rem;
     padding: 1.2rem 0;
   }
@@ -93,9 +94,16 @@ const Wrapper = styled(motion.section)`
   }
 
   /*  Media queries */
-  /* @media only screen and (max-width: 680px) {
-   
-  } */
+  @media only screen and (max-width: 820px) {
+    .description {
+      width: 100%;
+      padding: 2rem;
+    }
+    img {
+      background-position: center;
+      width: 20rem;
+    }
+  }
 `;
 
 export default Product;

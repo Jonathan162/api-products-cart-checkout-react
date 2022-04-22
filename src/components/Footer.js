@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
       </FooterLayout>
       <div className="copyright-footer">
-        <p>© 2022 - Cookies - Personuppgifter</p>
+        <p>© 2022 - Hantering av personuppgifter - Cookies - Köpvillkor</p>
       </div>
     </Wrapper>
   );

@@ -8,7 +8,7 @@ const Checkout = ({ cartItems, onAdd, onRemove, removeProducts }) => {
   const totalPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
 
   return (
-    <Wrapper
+    <DivWrapper
       exit="exit"
       variants={PageAnimation}
       initial="hidden"
@@ -70,22 +70,21 @@ const Checkout = ({ cartItems, onAdd, onRemove, removeProducts }) => {
         <PriceContainer>
           <div>
             <p>
-              Totalt pris: <strong>{totalPrice}:-</strong>
+              Totalt pris: <b>{totalPrice}:-</b>
             </p>
           </div>
 
           <button onClick={() => alert("Skickar vidare till betalning")}>
             Till betalning
           </button>
-
           <hr />
         </PriceContainer>
       )}
-    </Wrapper>
+    </DivWrapper>
   );
 };
 
-const Wrapper = styled(motion.div)`
+const DivWrapper = styled(motion.div)`
   min-height: 100vh;
   max-width: 60rem;
   margin: 0 auto;
@@ -93,7 +92,7 @@ const Wrapper = styled(motion.div)`
 
   table {
     border-collapse: collapse;
-    margin: 5px 0;
+    margin: 0.3rem 0;
     font-size: 0.9em;
     width: 100%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -114,7 +113,7 @@ const Wrapper = styled(motion.div)`
   h1 {
     text-align: center;
     font-weight: lighter;
-    margin: 60px 0;
+    margin: 4rem 0;
   }
 
   h3 {
@@ -171,7 +170,7 @@ const Wrapper = styled(motion.div)`
 `;
 
 const PriceContainer = styled.div`
-  margin: 60px 0;
+  margin: 4rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;

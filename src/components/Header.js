@@ -12,7 +12,7 @@ const Header = ({
   removeProducts,
 }) => {
   return (
-    <Wrapper className="hej">
+    <DivWrapper>
       <HeaderLayout>
         <Nav />
         <div>
@@ -26,11 +26,11 @@ const Header = ({
           />
         </div>
       </HeaderLayout>
-    </Wrapper>
+    </DivWrapper>
   );
 };
 
-const Wrapper = styled.div`
+const DivWrapper = styled.div`
   background-color: #333;
   position: fixed;
   z-index: 100;

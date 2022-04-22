@@ -5,7 +5,7 @@ const CartListItem = ({ item, onRemove, onAdd, removeProducts }) => {
   return (
     <ListItem key={item.id}>
       <div className="cart-item">
-        <img src={item.url} width="60px" alt={item.title} />{" "}
+        <img src={item.url} width="60px" alt={item.title} />
       </div>
       <div>
         <b>{item.title}</b>
@@ -13,7 +13,7 @@ const CartListItem = ({ item, onRemove, onAdd, removeProducts }) => {
       <div className="cart-item">
         <button className="action-btn" onClick={() => onAdd(item)}>
           +
-        </button>{" "}
+        </button>
         <button className="action-btn" onClick={() => onRemove(item)}>
           -
         </button>
@@ -30,7 +30,7 @@ const CartListItem = ({ item, onRemove, onAdd, removeProducts }) => {
   );
 };
 
-const ListItem = styled.div`
+const ListItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;

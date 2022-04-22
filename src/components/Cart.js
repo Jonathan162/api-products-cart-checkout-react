@@ -19,8 +19,7 @@ const Cart = ({ onRemove, onAdd, cartItems, clearCart, removeProducts }) => {
     setIsOpen(!isOpen);
   };
 
-  const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
-  const totalPrice = itemsPrice;
+  const totalPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
 
   return (
     <div>
@@ -68,7 +67,6 @@ const Cart = ({ onRemove, onAdd, cartItems, clearCart, removeProducts }) => {
                   <div className="cart-btns">
                     <Link to="/checkout">
                       <button onClick={() => setIsOpen(!isOpen)}>
-                        {" "}
                         Gå till checkout
                       </button>
                     </Link>

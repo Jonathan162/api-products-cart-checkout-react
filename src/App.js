@@ -9,13 +9,13 @@ import GlobalStyle from "./components/GlobalStyle";
 import { AnimatePresence } from "framer-motion";
 
 function App() {
-  //getting location for page transition exit on componentDidUnMount
+  //getting location for page transition exit on componentDidUnmount
   const location = useLocation();
 
-  //state for managing cart and checkout page
+  //state for managing cart/checkout page
   const [cartItems, setCartItems] = useState([]);
 
-  //fn for adding to cart
+  //fn for adding/increasing to cart
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
@@ -29,7 +29,7 @@ function App() {
     }
   };
 
-  //fn for removing a product
+  //fn for removing/reducing an existing product
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist.qty === 1) {
@@ -43,12 +43,12 @@ function App() {
     }
   };
 
-  //fn for deleting object of product
+  //fn for deleting the selected product object from array
   const removeProducts = (item) => {
     setCartItems(cartItems.filter((x) => x.id !== item.id));
   };
 
-  //fn for clearing cart
+  //fn for clearing the array
   const clearCart = () => {
     setCartItems([]);
   };

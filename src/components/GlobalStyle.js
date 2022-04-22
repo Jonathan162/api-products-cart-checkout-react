@@ -12,7 +12,6 @@ li {
   list-style: none;
 }
 
-
 button {
   font-weight: lighter;
   font-size: 1rem; 
@@ -27,7 +26,6 @@ button {
     background-color: #23d997;
     color: white;
   }
-
 }
 
 h1 {
@@ -50,14 +48,12 @@ p {
   line-height: 150%;
 }
 
-
 a {
   text-decoration: none;
   color: #222;
 
   &:hover {
   cursor: pointer;
-
   }
 
   &:visited {

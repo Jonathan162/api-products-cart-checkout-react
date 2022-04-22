@@ -23,20 +23,22 @@ const Products = ({ onAdd }) => {
   }, []);
 
   return (
-    <Wrapper
-      exit="exit"
-      variants={PageAnimation}
-      initial="hidden"
-      animate="show"
-    >
-      {productData.map((product) => (
-        <ProductItem key={product.id} product={product} onAdd={onAdd} />
-      ))}
-    </Wrapper>
+    <main>
+      <UlWrapper
+        exit="exit"
+        variants={PageAnimation}
+        initial="hidden"
+        animate="show"
+      >
+        {productData.map((product) => (
+          <ProductItem key={product.id} product={product} onAdd={onAdd} />
+        ))}
+      </UlWrapper>
+    </main>
   );
 };
 
-const Wrapper = styled(motion.ul)`
+const UlWrapper = styled(motion.ul)`
   width: 80%;
   margin: 10rem auto;
   display: grid;

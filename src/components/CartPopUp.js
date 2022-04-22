@@ -52,6 +52,18 @@ const PopUpBox = styled.div`
     border: 1px solid #999;
     font-size: 20px;
   }
+
+  /*  Media queries */
+  @media only screen and (max-width: 845px) {
+    .close-icon {
+      right: calc(22.5% - 27px);
+    }
+  }
+  @media only screen and (max-width: 620px) {
+    .close-icon {
+      right: calc(23% - 24px);
+    }
+  }
 `;
 
 export default Popup;
